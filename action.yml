@@ -1,0 +1,20 @@
+name: 'Notify Telegram Action'
+on:
+  push:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    name: Notify via Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message to Telegram
+        uses: Lukasss93/telegram-action@v1.3
+        env:
+          TELEGRAM_TOKEN: ${{ 1483712810:AAELcbzsOhJBNEZnaMMNd3C40PlM61c7eJo }}
+          TELEGRAM_CHAT: ${{ 1189691411 }}
+        with: 
+          STATUS: ${{job.status}} # Required for accessing the status of certain job
+          footer: 'Append a message to default message' # Optional
+          message: 'Override the default message (footer included)' # Optional
